@@ -19,14 +19,32 @@
       width: 100%;
       object-fit: cover;
       margin-bottom: 16px;
+      position: relative;
+    }
+    #banner::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3); /* Dark overlay for better text visibility */
+      z-index: 1;
+    }
+    #banner img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .center-content {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
+      align-items: center;
       text-align: center;
       color: white; /* Ensure text is visible against the background */
+      position: relative;
+      z-index: 2; /* Ensure text is above the overlay */
     }
     .footer {
       margin-top: 20px;
@@ -36,26 +54,63 @@
       padding: 10px;
       border-radius: 5px;
     }
+    .profile-img {
+      width: 150px; /* Default size for small screens */
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid white; /* Optional border for better visibility */
+    }
+    .profile-img-lg {
+      width: 250px; /* Larger size for large screens */
+      height: 250px;
+    }
+    .founder-name {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .about-text {
+      margin-bottom: 32px;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="center-content">
-      <h1 class="mt-2 mb-4">TryNovate</h1>
-      <img id="banner" class="img-fluid" src="static/trynovate-high-resolution-logo-white.png" alt="image">
-      <h2 class="mt-2 mb-4">About TryNovate</h2>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor mauris lacus, at eleifend mauris venenatis ornare. In sollicitudin, massa sit amet pharetra posuere, turpis erat ultricies tellus, vitae auctor libero diam sed sapien. Nam vel imperdiet massa. Vivamus tincidunt orci a ante pulvinar, ac hendrerit nisl scelerisque. Pellentesque elementum rhoncus ligula vel bibendum. Nullam id efficitur ipsum, eget dictum massa. Duis nec purus venenatis, fringilla lacus at, dapibus enim.</p>
-      <h2 class="mt-2 mb-4">Open Positions</h2>
-      <div>
-        {% for job in jobs %}
-          {% include 'jobitem.html' %}
-        {% endfor %}
-      </div>
-      <button class="btn btn-outline-light float-right align-middle  btn-lg mb-4">Contact Us</button>
+  {% include 'nav.html' %}
+  <div class="center-content">
+    <h1 class="mt-2 mb-4">TryNovate</h1>
+    <div id="banner">
+      <img src="static/trynovate-high-resolution-logo-white.png" alt="image">
     </div>
-    <div class="footer">
-      <p>Copyright 2024, TryNovate</p>
+    <h2 class="mt-2 mb-4">About TryNovate</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column align-items-center order-lg-1">
+          <img src="static/saisanjay.jpg" alt="Sai Sanjay" class="profile-img profile-img-lg d-none d-lg-block">
+          <img src="static/saisanjay.jpg" alt="Sai Sanjay" class="profile-img d-block d-lg-none">
+          <div class="founder-name">Founder: Sai Sanjay</div>
+        </div>
+        <div class="col-lg-6 d-flex align-items-center order-lg-0">
+          <p class="lead about-text">Welcome to TryNovate, where innovation meets excellence. Founded by Sai Sanjay, TryNovate is dedicated to pushing the boundaries of technology and education. Our mission is to create cutting-edge solutions that empower individuals and organizations to achieve their full potential.
+
+          At TryNovate, we specialize in developing innovative educational programs and technology solutions that cater to the ever-evolving needs of the industry. With a strong focus on quality, accessibility, and user experience, we aim to make a significant impact in the fields of technology and education.
+
+          Our flagship programs are designed to help professionals and students alike to stay ahead of the curve by providing them with the knowledge and skills required in today’s fast-paced world. We offer a range of courses and workshops that cover the latest trends and technologies, ensuring that our participants are well-equipped to tackle real-world challenges.
+
+          Join us at TryNovate and be a part of a community that is shaping the future through innovation and education.</p>
+        </div>
+      </div>
+    </div>
+    <h2 class="mt-2 mb-4">Open Positions</h2>
+    <div>
+      {% for job in jobs %}
+        {% include 'jobitem.html' %}
+      {% endfor %}
+    </div>
+    <div class="text-center">
+      <a class="btn btn-outline-light float-right align-middle" href="trynovate@gmail.com?subject=Question%20about%20Job%20Opernings&body=My%20name%3A%20%3Cyour%20name%20here%3E%0D%0A%0D%0AMy%20questions%3A%20%3Center%20question%20here%3E%0D%0A">Contact Us</a>
     </div>
   </div>
+  {% include 'footer.html' %}
 </body>
 </html>
