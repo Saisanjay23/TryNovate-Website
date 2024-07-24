@@ -11,7 +11,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
     }
     #banner {
@@ -46,7 +46,12 @@
       <h2 class="mt-2 mb-4">About TryNovate</h2>
       <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor mauris lacus, at eleifend mauris venenatis ornare. In sollicitudin, massa sit amet pharetra posuere, turpis erat ultricies tellus, vitae auctor libero diam sed sapien. Nam vel imperdiet massa. Vivamus tincidunt orci a ante pulvinar, ac hendrerit nisl scelerisque. Pellentesque elementum rhoncus ligula vel bibendum. Nullam id efficitur ipsum, eget dictum massa. Duis nec purus venenatis, fringilla lacus at, dapibus enim.</p>
       <h2 class="mt-2 mb-4">Open Positions</h2>
-      <button class="btn btn-primary btn-lg mb-4">Contact Us</button>
+      <div>
+        {% for job in jobs %}
+          {% include 'jobitem.html' %}
+        {% endfor %}
+      </div>
+      <button class="btn btn-outline-light float-right align-middle  btn-lg mb-4">Contact Us</button>
     </div>
     <div class="footer">
       <p>Copyright 2024, TryNovate</p>
