@@ -1,0 +1,30 @@
+body {
+  background-image: url("static/notorious-v1rus-VLDJ725jdLE-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+}
+#banner {
+  height: 360px;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: white; /* Ensure text is visible against the background */
+}
+.footer {
+  margin-top: 20px;
+  text-align: center;
+  color: white; /* Ensure text is visible against the background */
+  background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent background */
+  padding: 10px;
+  border-radius: 5px;
+}
