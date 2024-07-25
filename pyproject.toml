@@ -10,6 +10,10 @@ packages = [{include = "repl_nix_trynovate_website"}]
 python = "^3.10"
 flask = "^3.0.3"
 sqlalchemy = "^2.0.31"
+flask-mail = "^0.10.0"
+flask-recaptcha = "^0.4.2"
+flask-wtf = "^1.2.1"
+wtforms = "^3.1.2"
 
 
 [build-system]

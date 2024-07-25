@@ -1,57 +1,43 @@
 from flask import Flask, render_template, jsonify, request
 from database import load_jobs_from_db, load_job_from_db, add_application_to_db
-import os
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
-# ... your Flask code ...
-
-# Database setup 
-db_connection_string = os.environ.get('DB_CONNECTION_STRING') 
-
-if db_connection_string is None:
-    raise ValueError("DB_CONNECTION_STRING environment variable not set")
-
-engine = create_engine(db_connection_string)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-# ... your database functions ...
-
-print("DB_CONNECTION_STRING:", os.environ.get('DB_CONNECTION_STRING'))
-print("SUPABASE_URL:", os.environ.get('SUPABASE_URL'))
-print("SUPABASE_KEY:", os.environ.get('SUPABASE_KEY'))
-
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello_jovian():
-    jobs = load_jobs_from_db()
-    return render_template('home.html', jobs=jobs)
+  jobs = load_jobs_from_db()
+  return render_template('home.html', 
+                         jobs=jobs)
 
 @app.route("/api/jobs")
 def list_jobs():
-    jobs = load_jobs_from_db()
-    return jsonify(jobs)
+  jobs = load_jobs_from_db()
+  return jsonify(jobs)
 
 @app.route("/job/<id>")
 def show_job(id):
-    job = load_job_from_db(id)
-    if not job:
-        return "Not Found", 404
-    return render_template('jobpage.html', job=job)
+  job = load_job_from_db(id)
+
+  if not job:
+    return "Not Found", 404
+
+  return render_template('jobpage.html', 
+                         job=job)
 
 @app.route("/api/job/<id>")
 def show_job_json(id):
-    job = load_job_from_db(id)
-    return jsonify(job)
+  job = load_job_from_db(id)
+  return jsonify(job)
 
-@app.route("/job/<id>/apply", methods=['POST'])
+@app.route("/job/<id>/apply", methods=['post'])
 def apply_to_job(id):
-    data = request.form
-    job = load_job_from_db(id)
-    add_application_to_db(id, data)
-    return render_template('application_submitted.html', application=data, job=job)
+  data = request.form
+  job = load_job_from_db(id)
+  add_application_to_db(id, data)
+  return render_template('application_submitted.html', 
+                         application=data,
+                         job=job)
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+  app.run(host='0.0.0.0', debug=True)
